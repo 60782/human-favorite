@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pesan untuk Sayang</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      color: red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .warning {
+      text-align: center;
+      background: rgba(255, 0, 0, 0.1);
+      border: 3px dashed red;
+      padding: 50px;
+      border-radius: 20px; box-shadow: 0 0 30px #ff00cc;
+      box-shadow: 0 0 40px red;
+      font-family: 'Courier New', monospace;
+      position: relative;
+      animation: glitch 1s infinite;
+    }
+    .warning p {
+      font-size: 26px;
+      font-weight: bold;
+      text-shadow: 1px 0 red, -1px 0 blue;
+    }
+    @keyframes glitch {
+      0% { transform: translate(1px, -1px); }
+      10% { transform: translate(-1px, 2px); }
+      20% { transform: translate(1px, 1px); }
+      30% { transform: translate(-1px, -1px); }
+      40% { transform: translate(1px, 2px); }
+      50% { transform: translate(-2px, -1px); }
+      100% { transform: translate(0px, 0px); }
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      background: darkred;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+    }
+    .frame-container {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      text-align: center;
+    }
+    .frame-img {
+      width: 100%;
+    }
+    #message-box {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  flex-direction: row;
+  align-items: center;
+    max-height: 300px;
+    overflow-y: auto;
+      width: 100%;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 4px solid hotpink;
+      border-radius: 20px; box-shadow: 0 0 30px #ff00cc;
+      margin-top: 10px;
+      font-size: 20px;
+      color: #d6006e;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    #text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+    max-width: 100%;
+      flex: 1;
+    }
+    #gif {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-left: 10px;
+      width: 150px;
+      height: auto;
+      flex-shrink: 0;
+    }
+    .gallery {
+      position: absolute;
+      bottom: 3%;
+      width: 100%;
+      text-align: center;
+    }
+    .star-border {
+      border: 4px dashed gold;
+      border-radius: 20px; box-shadow: 0 0 30px #ff00cc;
+      margin: 10px;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+    
+
+
+
+
+.ending-message {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-size: 24px;
+  font-family: 'Dancing Script', cursive;
+  text-align: center;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255, 0, 100, 0.4);
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 95%;
+  max-height: 40%;
+  overflow-y: auto;
+  word-break: break-word;
+  animation: fadeInText 2s ease-in-out, slideUp 1.5s ease;
+}
+
+
+.glitch-noise {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('21a28e7c-8bd0-41fe-8fdc-01ee163a62b2.gif');
+      background-size: cover;
+      opacity: 0.15;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: 5;
+    }
+    @keyframes fadeInText {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @media (max-width: 600px) {
+      .frame-container {
+        width: 90%;
+      }
+      #message-box {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  flex-direction: row;
+  align-items: center;
+    max-height: 300px;
+    overflow-y: auto;
+        font-size: 16px;
+        flex-direction: column;
+      }
+      #gif {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-left: 10px;
+        width: 100%;
+      }
+      
+
+
+
+
+.ending-message {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-size: 24px;
+  font-family: 'Dancing Script', cursive;
+  text-align: center;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255, 0, 100, 0.4);
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 95%;
+  max-height: 40%;
+  overflow-y: auto;
+  word-break: break-word;
+  animation: fadeInText 2s ease-in-out, slideUp 1.5s ease;
+}
+
+
+}
+  
+    .ending-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('1e3aa8dc25c3161760ddea3e811b3d66-ezgif.com-video-to-gif-converter.gif') no-repeat center center;
+      background-size: cover;
+      z-index: -1;
+    }
+    
+    .active-bg {
+      background: url('843aa6e02d1ea5f729d153455770c43e-ezgif.com-video-to-gif-converter.gif') no-repeat center center fixed;
+      background-size: cover;
+    }
+    
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 50%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.player-container {
+  display: none;
+  display: none;
+  display: none;
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  z-index: 100;
+}
+
+.cover {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-right: 15px;
+  flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(255, 0, 200, 0.5); /* Glow effect */
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent bg if needed */
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.controls {
+  flex-grow: 1;
+}
+.controls .top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+.controls .bar {
+  width: 100%;
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  position: relative;
+}
+.controls .bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: #3b82f6;
+  border-radius: 3px;
+}
+.controls .buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 8px;
+}
+.controls .buttons button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: default;
+}
+
+
+
+.audio-player, .music-box, .player-container {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(255, 0, 200, 0.4);
+  border-radius: 20px;
+  padding: 12px;
+  width: 80%;
+  max-width: 360px;
+  margin: 0 auto;
+  color: white;
+}
+
+
+#message-box {
+  transition: box-shadow 0.1s linear;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="overlay" id="overlay">
+    <div class="warning">
+      <p>!! PERINGATAN SISTEM ERROR !!<br>Apakah kamu yakin ingin melanjutkan?</p>
+      <button onclick="startWebsite()">LANJUTKAN</button>
+    </div>
+    <div class="glitch-noise"></div>
+  </div>
+
+  <audio id="bg-music" src="What’s a soulmate _ X A Thousand Years_ Multifandom Edit.m4a" preload="auto"></audio>
+  <canvas id="particles"></canvas>
+
+  <div class="frame-container">
+        <div id="message-box">
+      <p id="text"></p>
+      <img id="gif" src="gif1.gif" />
+    </div>
+  </div>
+
+  <div class="gallery" id="gallery" style="display:none;">
+    <img src="img1.jpg" class="star-border" />
+    <img src="img2.jpg" class="star-border" />
+    <img src="img3.jpg" class="star-border" />
+    <img src="img4.jpg" class="star-border" />
+  </div>
+
+  <script>
+    const messages = [
+      "Halooo Sayangkuu cantikku ",
+      "pesan ini buat kamuu",
+      "iyaa kamu doang pake nanya☺️",
+      "sayaangg meskipun kisah kita terbilang baru namun akan ku pastikan",
+      "kisah kita akan menjadi kisah yang sangat indah yang bisa diceritakan kelak.",
+      "Aku Mencintaimu Sepertihalnya Langit Yang Selalu Indah Di segala Cuacanya",
+      "Bagi Dunia Kamu memang Satu, Namun Bagiku Kamulah Dunia Itu sendiri",
+      "Kita Kenal secara Tidak segaja,( yaa meskipun aku sendiri yang cari gara gara kadang kan :v)",
+      "namun perasaanku kepadamu Memang benar adanya dan sangat sangat tulus (no fek fek)",
+      "jangan pernah ragu menceritakan segala hal yang terjadi di sepanjang hidupmu",
+      "asalkan kamu tau setiap hal aku adalah tentangmu dan akan selalu begitu",
+      "maafkan laki lakimu ini yang masih belum bisa memenuhi ekspetasimu",
+      "Terimakasih Telah kembali mewarnai hari hari gelapku",
+      "Terimakasih sayangkuu",
+      "harapanku kita akan selalu bersama hingga menjadi satu",
+      "memang kata orang itu hal yang mustahil",
+      "namun akan ku perjuangkan dengan sungguh-sungguh",
+      "semoga setiap langkahmu diberikan kemudahan",
+      "Lovee You three thousand moree sayanggg :) ❤️"
+    ];
+    const gifs = [
+  "gif1.gif",
+  "gif2.gif",
+  "gif3.gif",
+  "gif4.gif",
+  "gif5.gif",
+  "gif6.gif",
+  "gif7.gif",
+  "gif8.gif",
+  "gif9.gif",
+  "gif10.gif",
+  "gif11.gif",
+  "gif12.gif",
+  "gif13.gif",
+  "gif14.gif",
+  "gif15.gif"
+];
+
+    let index = 0;
+    let charIndex = 0;
+    let currentMessage = "";
+    let animationId;
+
+    function startWebsite() {
+  setTimeout(() => {
+    const player = document.querySelector('.player-container');
+    if (player) {
+      player.style.display = 'flex';
+      console.log('Player shown');
+    } else {
+      console.log('Player element not found');
+    }
+  }, 500);
+  
+      document.body.classList.add('active-bg');
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('bg-music').play();
+
+      
+
+      initHearts();
+      typeMessage();
+    }
+
+    function typeMessage() {
+      if (index < messages.length) {
+        if (charIndex < messages[index].length) {
+          currentMessage += messages[index].charAt(charIndex);
+          document.getElementById('text').innerText = currentMessage;
+          charIndex++;
+          setTimeout(typeMessage, 50);
+        } else {
+          document.getElementById('gif').src = gifs[index % gifs.length];
+          index++;
+          charIndex = 0;
+          currentMessage = "";
+          setTimeout(typeMessage, 1000);
+        }
+      } else {
+        document.body.style.background = 'black';
+        document.querySelector('.frame-container').style.top = '5%';
+        document.getElementById('message-box').style.marginTop = '0';
+        document.getElementById('message-box').style.background = 'transparent';
+        document.getElementById('message-box').style.border = 'none';
+        document.getElementById('message-box').style.display = 'none';
+        document.getElementById('gallery').style.marginTop = '80px';
+        document.getElementById('gallery').style.display = 'block';
+        document.getElementById('particles').style.display = 'none';
+        cancelAnimationFrame(animationId);
+        const endingBg = document.createElement('div');
+    endingBg.className = 'ending-bg';
+    document.body.appendChild(endingBg);
+
+    document.querySelector('.player-container').style.display = 'none';
+const end = document.createElement('div');
+end.className = 'ending-message';
+end.innerHTML = 'Selamat, kamu sudah sampai di akhir pesan ini.<br>Tapi cintaku ke kamu nggak akan pernah ada akhirnya.<br>Tetaplah bersamaku ya,<br>Sayang ❤️';
+document.body.appendChild(end);
+      }
+    }
+
+    function initHearts() {
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      let hearts = [];
+      for (let i = 0; i < 100; i++) {
+        hearts.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 8 + 2,
+          speed: Math.random() * 1 + 0.5,
+          opacity: Math.random() * 0.5 + 0.5
+        });
+      }
+
+      function drawHeart(x, y, size, opacity) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.scale(size / 10, size / 10);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(0, -3, -5, -3, -5, 0);
+        ctx.bezierCurveTo(-5, 3, 0, 5, 0, 8);
+        ctx.bezierCurveTo(0, 5, 5, 3, 5, 0);
+        ctx.bezierCurveTo(5, -3, 0, -3, 0, 0);
+        ctx.closePath();
+        ctx.fillStyle = `rgba(255, 0, 100, ${opacity})`;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        hearts.forEach(h => {
+          drawHeart(h.x, h.y, h.size, h.opacity);
+          h.y -= h.speed;
+          if (h.y < -10) h.y = canvas.height + 10;
+        });
+        animationId = requestAnimationFrame(animate);
+      }
+
+      animate();
+    }
+  </script>
+
+ ></canvas>
+
+
+<div class="player-container" style="display: none;">
+  <div class="cover">
+    <img src="foto.jpg" alt="Cover">
+  </div>
+  <div class="controls">
+    <div class="top">
+      <span>Music Player</span>
+      <span id="timestamp">00:00</span>
+    </div>
+    <div class="bar"><span id="progress"></span></div>
+    <div class="buttons">
+      <button>⏪</button>
+      <button>▶️</button>
+      <button>⏩</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const audio = document.getElementById('bg-music');
+  const timestamp = document.getElementById('timestamp');
+  const progress = document.getElementById('progress');
+
+  audio.addEventListener('timeupdate', () => {
+    const current = audio.currentTime;
+    const duration = audio.duration;
+    timestamp.textContent = formatTime(current);
+    progress.style.width = `${(current / duration) * 100}%`;
+  });
+
+  function formatTime(s) {
+    const m = Math.floor(s / 60).toString().padStart(2, '0');
+    const sec = Math.floor(s % 60).toString().padStart(2, '0');
+    return `${m}:${sec}`;
+  }
+</script>
+
+
+<script>
+const audio = document.querySelector('audio');
+const glowElement = document.getElementById('message-box');
+
+if (audio && glowElement) {
+  const ctx = new AudioContext();
+  const src = ctx.createMediaElementSource(audio);
+  const analyser = ctx.createAnalyser();
+  src.connect(analyser);
+  analyser.connect(ctx.destination);
+
+  const data = new Uint8Array(analyser.frequencyBinCount);
+
+  function animateGlow() {
+    requestAnimationFrame(animateGlow);
+    analyser.getByteFrequencyData(data);
+    let volume = data.reduce((a, b) => a + b, 0) / data.length;
+    let glowSize = Math.min(volume / 5, 50);
+    glowElement.style.boxShadow = `0 0 ${glowSize}px rgba(255, 0, 200, 0.5)`;
+  }
+
+  audio.onplay = () => {
+    ctx.resume().then(animateGlow);
+  };
+}
+</script>
+</body>
+</html>
